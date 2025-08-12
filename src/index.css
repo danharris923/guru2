@@ -1,0 +1,293 @@
+/* Tailwind CSS imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Inter font as primary font family */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  }
+  
+  /* Image loading optimization */
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Masonry layout utilities */
+  .masonry {
+    column-count: 2;
+    column-gap: 1rem;
+    column-fill: balance;
+  }
+  
+  .masonry-sm {
+    column-count: 1;
+  }
+  
+  .masonry-md {
+    column-count: 3;
+  }
+  
+  .masonry-lg {
+    column-count: 4;
+  }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  /* Card hover effects */
+  .deal-card {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:scale-[1.02];
+    @apply focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2;
+  }
+  
+  /* Glass morphism effect for modals */
+  .glass-modal {
+    @apply backdrop-blur-sm bg-white/80;
+    @apply dark:bg-gray-900/80;
+  }
+  
+  /* Gradient buttons */
+  .gradient-button {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600;
+    @apply hover:from-blue-600 hover:to-purple-700;
+    @apply text-white font-medium px-6 py-3 rounded-lg;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  /* Price display styles */
+  .price-current {
+    @apply text-green-600 font-bold text-lg;
+  }
+  
+  .price-original {
+    @apply text-gray-500 line-through text-sm;
+  }
+  
+  .discount-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+  
+  .skeleton-dark {
+    @apply animate-pulse bg-gray-700 rounded;
+  }
+  
+  /* Scroll behavior */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar for webkit browsers */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-lg;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+  
+  /* Image lazy loading placeholder */
+  .image-placeholder {
+    @apply bg-gray-200 animate-pulse flex items-center justify-center;
+    @apply before:content-['📷'] before:text-gray-400 before:text-2xl;
+  }
+  
+  /* Featured deal glow effect */
+  .featured-glow {
+    @apply relative;
+  }
+  
+  .featured-glow::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-purple-500;
+    @apply rounded-lg blur opacity-30 group-hover:opacity-100;
+    @apply transition duration-1000 group-hover:duration-200 animate-pulse;
+  }
+  
+  /* Data source indicators */
+  .data-source-paapi {
+    @apply bg-green-100 text-green-800 border-green-200;
+  }
+  
+  .data-source-scraped {
+    @apply bg-blue-100 text-blue-800 border-blue-200;
+  }
+  
+  .data-source-fallback {
+    @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Text truncation utilities */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Safe area utilities for mobile */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounceGentle 0.6s ease-in-out;
+  }
+  
+  /* High contrast mode utilities */
+  .high-contrast .text-gray-500 {
+    @apply text-gray-700;
+  }
+  
+  .high-contrast .bg-gray-100 {
+    @apply bg-gray-200;
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    .print-only {
+      display: block !important;
+    }
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Dark mode styles (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    color-scheme: dark;
+  }
+  
+  .dark-mode .glass-modal {
+    @apply backdrop-blur-sm bg-gray-900/80;
+  }
+  
+  .dark-mode .skeleton {
+    @apply bg-gray-700;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
