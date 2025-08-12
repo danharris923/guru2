@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+venv/
+venv_linux/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+
+# Development files
+.git/
+.gitignore
+README.md
+*.md
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+
+# Scripts
+expand_deals.py
+get_120_deals.py
+scrape_real_deals.py
+test_*.py
+
+# Scraper directory (contains sensitive code)
+scraper/
