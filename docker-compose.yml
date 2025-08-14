@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  savingsguru-web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: savingsguru
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.savingsguru.rule=Host(`savingsguru.local`)"
+      - "traefik.http.services.savingsguru.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy
+  # nginx-proxy:
+  #   image: nginx:alpine
+  #   container_name: savingsguru-proxy
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./proxy.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     - savingsguru-web
+  #   restart: unless-stopped
+
+networks:
+  default:
+    name: savingsguru-network
